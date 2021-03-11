@@ -40,37 +40,37 @@ sam.emit('name');
 
 
 //readline module
-const readLine = require('readline');
-const { rawListeners } = require('process');
-//createInterface takes in two argument object
-const r1 = readLine.createInterface({input:process.stdin, output: process.stdout});
-let num1 = Math.floor((Math.random()*10)+1);
-let num2 = Math.floor((Math.random()*10)+1);
-let answer = num1+num2;
+// const readLine = require('readline');
+// const { rawListeners } = require('process');
+// //createInterface takes in two argument object
+// const r1 = readLine.createInterface({input:process.stdin, output: process.stdout});
+// let num1 = Math.floor((Math.random()*10)+1);
+// let num2 = Math.floor((Math.random()*10)+1);
+// let answer = num1+num2;
 
-r1.question(`What is  ${num1} + ${num2} ?`, (userInput)=>{
-    if(userInput.trim() == answer)
-    {
-        r1.close();
-        //this emits an close event
-    } else{
-        r1.setPrompt(`Incorrect response of ${userInput}, please try again\n`);
-        r1.prompt();
-        //line will keep the input active
-        r1.on('line',(userInput)=>{
-            if(userInput.trim() == answer){
-                r1.close();
-            } else{
-                r1.setPrompt(`Incorrect response of ${userInput}, please try again\n`);
-                r1.prompt(); 
-            }
-        });
-    }
-});
-//Here, we are listening to the close event emitted from above
-r1.on('close', ()=>{
-    console.log('Correct!');
-});
+// r1.question(`What is  ${num1} + ${num2} ?`, (userInput)=>{
+//     if(userInput.trim() == answer)
+//     {
+//         r1.close();
+//         //this emits an close event
+//     } else{
+//         r1.setPrompt(`Incorrect response of ${userInput}, please try again\n`);
+//         r1.prompt();
+//         //line will keep the input active
+//         r1.on('line',(userInput)=>{
+//             if(userInput.trim() == answer){
+//                 r1.close();
+//             } else{
+//                 r1.setPrompt(`Incorrect response of ${userInput}, please try again\n`);
+//                 r1.prompt(); 
+//             }
+//         });
+//     }
+// });
+// //Here, we are listening to the close event emitted from above
+// r1.on('close', ()=>{
+//     console.log('Correct!');
+// });
 
 //Filesystem Module - create, delete and delete files
 const fs = require('fs');
@@ -109,3 +109,28 @@ fs.unlink('first.txt', (err) => {
     }
 });
 
+
+//created a folder
+
+fs.mkdir('tutorial', err => {
+    if (err) {
+        console.log(err);
+    } else{
+        console.log('Created the file');
+        fs.writeFile('./tutorial/example.txt', 'Rockstart', err=> {
+            if(err)
+                console.log('err');
+            else
+                console.log('Successfully created a file');
+        });
+    }
+});
+
+//deleting a folder
+// fs.rmdir('tutorial', err => {
+//     if (err) {
+//         console.log(err);
+//     } else{
+//         console.log('');
+//     }
+// });
