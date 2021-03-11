@@ -67,9 +67,8 @@ r1.question(`What is  ${num1} + ${num2} ?`, (userInput)=>{
     }
 });
 
-//Here, we are listening to the close event emitted from above
+Here, we are listening to the close event emitted from above
 r1.on('close', ()=>{
     console.log('Correct!');
 });
-
 
