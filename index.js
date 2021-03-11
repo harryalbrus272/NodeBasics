@@ -56,6 +56,7 @@ r1.question(`What is  ${num1} + ${num2} ?`, (userInput)=>{
     } else{
         r1.setPrompt(`Incorrect response of ${userInput}, please try again\n`);
         r1.prompt();
+        //line will keep the input active
         r1.on('line',(userInput)=>{
             if(userInput.trim() == answer){
                 r1.close();
@@ -66,9 +67,45 @@ r1.question(`What is  ${num1} + ${num2} ?`, (userInput)=>{
         });
     }
 });
-
-Here, we are listening to the close event emitted from above
+//Here, we are listening to the close event emitted from above
 r1.on('close', ()=>{
     console.log('Correct!');
+});
+
+//Filesystem Module - create, delete and delete files
+const fs = require('fs');
+//create a file
+// fs.writeFile('example.txt',"this is an example", (err)=>{
+//     if(err)
+//         console.log(err);
+//     else
+//         console.log('File created successfully');
+//         fs.readFile('example.txt', 'utf8', (err,file)=>{
+//             if(err)
+//                 console.log(err);
+//             else
+//                 console.log(file);
+//         });
+// });
+// fs.rename('example.txt', 'first.txt', err=> {
+//     if(err)
+//         console.log(err);
+//     else
+//         console.log('Successfully renamed the file');    
+// });
+fs.appendFile('first.txt','Some data being appended',err => {
+    if(err){
+        console.log(err);
+    } else{
+        console.log('successfully appended to the file');
+    }
+});
+
+fs.unlink('first.txt', (err) => {
+    if (err) {
+        console.log(err);
+    } else{
+        console.log('file cleared');
+    }
 });
 
