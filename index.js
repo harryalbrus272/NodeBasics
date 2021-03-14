@@ -34,7 +34,7 @@ sks.on('name',()=>{
 sam.on('name',()=>{
     console.log('My name is ', sam.name);
 });
-//emit a event 
+//emit a event
 sks.emit('name');
 sam.emit('name');
 
@@ -62,7 +62,7 @@ sam.emit('name');
 //                 r1.close();
 //             } else{
 //                 r1.setPrompt(`Incorrect response of ${userInput}, please try again\n`);
-//                 r1.prompt(); 
+//                 r1.prompt();
 //             }
 //         });
 //     }
@@ -74,3 +74,48 @@ sam.emit('name');
 
 //Filesystem Module - create, delete and delete files
 const fs = require('fs');
+// create a file
+// fs.writeFile('first.txt','this is a example', (err) => {
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log('File succesfully created');
+//         //You shoiuld mention the encoding of the file to be read because the Buffer Stram reads the file in Binary format
+//         fs.readFile('first.txt', 'utf8', (err,file) => {
+//             if (err) {
+//                 console.log(err);
+//             } else{
+//                 console.log(file);
+//             }
+//         });
+//     }
+// });
+
+//Renaming a file
+//Name of the file to be read, Name of the file that it should be renamed to, and the call back function
+// fs. rename('first.txt', 'second.txt', (err)=> {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log('File has been succesfully renamed');
+//     }
+// });
+
+
+//Appending the file
+// fs.appendFile('second.txt', 'The data to be appended', (err) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log('Successfully appended the data to the file');
+//     }
+// });
+
+//Deleting the file
+fs.unlink('second.txt', (err) =>{
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('Successfully deleted the file');
+    }
+});
