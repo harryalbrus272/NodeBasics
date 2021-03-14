@@ -174,4 +174,12 @@ const fs = require("fs");
 //     writeStream.write(chunk);
 // });
 
-//
+//Read and Write Streams are useful when the data of the file is very large to handle for a single execution
+//The read file utilises the buffer size equal to the size of the file. But read and write streams use only small buffer size
+
+//Pipe and pipe chaining - Readable and writable 
+const readStream = fs.createReadStream('./tutorial/example.txt', 'utf8');
+const writeStream = fs.createWriteStream('./magic/first.txt');
+//Use the pipe function to pipe the data to the writeStream
+readStream.pipe(writeStream);
+//Pipe needs source stream and write stream
