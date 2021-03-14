@@ -146,18 +146,32 @@ const fs = require("fs");
 
 //You cannot delete a non-empty directory else it gives an error as 'directory not empty'
 
-fs.readdir('magic', (err,files) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log(files);
-        for(let file of files)
-            fs.unlink('./magic/'+ file, err => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('Sucesfully deleted the file');
-                }
-            });
-    }
-});
+// fs.readdir('magic', (err,files) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log(files);
+//         for(let file of files)
+//             fs.unlink('./magic/'+ file, err => {
+//                 if (err) {
+//                     console.log(err);
+//                 } else {
+//                     console.log('Sucesfully deleted the file');
+//                 }
+//             });
+//     }
+// });
+
+// //Reading the data in chunks rather than as a whole
+
+// const readStream = fs.createReadStream('./tutorial/example.txt', 'utf8');
+// //readStream object inherits from the event stream
+
+// const writeStream = fs.createWriteStream('./magic/first.txt'); 
+// //this reads the data in chunks rather than the whole data. So, you can always start writing the data to somewhere without 
+// readStream.on('data', chunk => {
+//     // console.log(chunk);
+//     writeStream.write(chunk);
+// });
+
+//
