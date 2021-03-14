@@ -178,16 +178,22 @@ const fs = require("fs");
 //The read file utilises the buffer size equal to the size of the file. But read and write streams use only small buffer size
 
 //Pipe and pipe chaining - Readable and writable 
-const readStream = fs.createReadStream('./tutorial/example.txt', 'utf8');
-const writeStream = fs.createWriteStream('./magic/first.txt.gz');
+const readStream = fs.createReadStream('./magic/zfile.txt.gz');
+const writeStream = fs.createWriteStream('example2.txt');
 //Use the pipe function to pipe the data to the writeStream
-readStream.pipe(writeStream);
+// readStream.pipe(writeStream);
 //Pipe needs source stream and write stream
 
 //Zlib is used for compressing the file
 const zlib = require('zlib');
 //Compressing the file
 const gzip = zlib.createGzip();
+
+//Uncompressing the file
+const gunzip = zlib.createGunzip();
+
+
 //We are going to pipe the readStream to the gzip module and then pipe it to the writeStream.
 //This is referred to as chaining of pipes
-readStream.pipe(gzip).pipe(writeStream);
+readStream.pipe(gunzip).pipe(writeStream);
+
