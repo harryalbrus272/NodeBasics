@@ -1,43 +1,42 @@
-const tutorial = require('./tutorial');
+const tutorial = require("./tutorial");
 console.log("Hello World from the node side");
 //node modules is basically a javascript file. Separating the concerns for the application
 console.log(tutorial);
 //tutorial is of function type
-console.log(tutorial.sum(2,5));
+console.log(tutorial.sum(2, 5));
 console.log(tutorial.PI);
-console.log(new tutorial.SomeMathObject('class called'));
+console.log(new tutorial.SomeMathObject("class called"));
 //emitter is built-in to the node
-const EventEmitter = require('events');
+const EventEmitter = require("events");
 //instance of EventEmitter
 const eventEmitter = new EventEmitter();
 //only get executed if the event 'tutorial' occurs. It's the listener
-eventEmitter.on('tutorial', (num1,num2)=>{
-    console.log(num1+num2);
+eventEmitter.on("tutorial", (num1, num2) => {
+  console.log(num1 + num2);
 });
-eventEmitter.emit('tutorial',1,2);
+eventEmitter.emit("tutorial", 1, 2);
 
-class person extends EventEmitter{
-    constructor(name) {
-         super();
-         this._name = name;
-    }
-    get name(){
-        return this._name;
-    }
+class person extends EventEmitter {
+  constructor(name) {
+    super();
+    this._name = name;
+  }
+  get name() {
+    return this._name;
+  }
 }
-let sks = new person('Shashwat Kumar Singh');
-let sam = new person('Samriddhi Singh');
+let sks = new person("Shashwat Kumar Singh");
+let sam = new person("Samriddhi Singh");
 //add a listener to the sks object
-sks.on('name',()=>{
-    console.log('My name is ', sks.name);
+sks.on("name", () => {
+  console.log("My name is ", sks.name);
 });
-sam.on('name',()=>{
-    console.log('My name is ', sam.name);
+sam.on("name", () => {
+  console.log("My name is ", sam.name);
 });
 //emit a event
-sks.emit('name');
-sam.emit('name');
-
+sks.emit("name");
+sam.emit("name");
 
 //readline module
 // const readLine = require('readline');
@@ -73,7 +72,7 @@ sam.emit('name');
 // });
 
 //Filesystem Module - create, delete and delete files
-const fs = require('fs');
+const fs = require("fs");
 // create a file
 // fs.writeFile('first.txt','this is a example', (err) => {
 //     if(err){
@@ -101,7 +100,6 @@ const fs = require('fs');
 //     }
 // });
 
-
 //Appending the file
 // fs.appendFile('second.txt', 'The data to be appended', (err) => {
 //     if (err) {
@@ -112,10 +110,54 @@ const fs = require('fs');
 // });
 
 //Deleting the file
-fs.unlink('second.txt', (err) =>{
+// fs.unlink('second.txt', (err) =>{
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log('Successfully deleted the file');
+//     }
+// });
+
+//Craete a new directory
+// fs.mkdir("magic", (err) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Folder successfully created");
+//     fs.writeFile("./magic/example2.txt", "123456", (err) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         console.log("Successfully created the file inside the directory");
+//       }
+//     });
+//   }
+// });
+
+
+//Deleting a directory
+// fs.rmdir('magic', (err) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log('Successfully deleted the folder');
+//     }
+// });
+
+//You cannot delete a non-empty directory else it gives an error as 'directory not empty'
+
+fs.readdir('magic', (err,files) => {
     if (err) {
         console.log(err);
     } else {
-        console.log('Successfully deleted the file');
+        console.log(files);
+        for(let file of files)
+            fs.unlink('./magic/'+ file, err => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('Sucesfully deleted the file');
+                }
+            });
     }
 });
